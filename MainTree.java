@@ -22,6 +22,8 @@ public class MainTree {
             System.out.println("8 | Esvaziar árvore");
             System.out.println("9 | Menor valor da árvore");
             System.out.println("10| Maior valor da árvore");
+            System.out.println("11| Número de folhas da árvore");
+            System.out.println("12| Soma de um caminho da árvore");
             System.out.println("0 | Sair do programa");
             System.out.println("---------------------------------------");
             System.out.println("Digite a opção desejada: ");
@@ -71,8 +73,20 @@ public class MainTree {
                     if (tree.maxNode() == Integer.MAX_VALUE) System.out.println("Arvore vazia!");
                     else System.out.println(tree.maxNode());
                 }
+                case 11 -> {
+
+                }
+                case 12 -> {
+                    System.out.println("Informe o primeiro elemento do caminho: ");
+                    int start = scan.nextInt();
+                    System.out.println("Informe o ultimo elemento do caminho: ");
+                    int end = scan.nextInt();
+
+                    if (tree.countBetween(start, end) == Integer.MIN_VALUE) System.out.println("Árvore vazia!");
+                    System.out.println(tree.countBetween(start, end));
+                }
             }
         } while (op != 0);
-
+        scan.close();
     }
 }
