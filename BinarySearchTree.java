@@ -248,11 +248,15 @@ class BinarySearchTree {
     public void treeInfo() {
         System.out.println("Altura da arvore: " + height(root));
         System.out.println("Quantidade de Nós: " + countNodes(root));
-        // if (root != null) {
-        // System.out.println("Valor minimo: " + minNode());
-        // System.out.println("Valor maximo: " + maxNode());
-        // }
-        // System.out.println("Quantidade de folhas: " + leaveNodes(root));
+        if (maxNode() == Integer.MAX_VALUE)
+            System.out.println("Arvore vazia!");
+        else
+            System.out.println("Maior valor: " + maxNode());
+        if (minNode() == Integer.MIN_VALUE)
+            System.out.println("Arvore vazia!");
+        else
+            System.out.println("Menor valor: " + minNode());
+
     }
 
     public void printTree() {
@@ -314,7 +318,7 @@ class BinarySearchTree {
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
     // public int countLeaves() {}
-    //se o nó atual é nulo retorna 0
+    // se o nó atual é nulo retorna 0
     public int countLeaves(Node current) {
         if (current == null) {
             return 0;
@@ -343,10 +347,10 @@ class BinarySearchTree {
     public int countBetween(int start, int end) {
         Node current = root;
         int soma = 0, min = Integer.MIN_VALUE;
-        ;
-        if (root == null) {
+        
+        if (root == null || contains(start) == null || contains(end) == null) {
             return min;
-        }
+        }   
 
         while (current.element != start) {
             if (start < current.element) {
@@ -356,18 +360,16 @@ class BinarySearchTree {
             }
         }
 
-        soma += current.element;
-
         while (current.element != end) {
             if (end < current.element) {
+                soma += current.element;
                 current = current.left;
-                soma += current.element;
             } else {
-                current = current.right;
                 soma += current.element;
+                current = current.right;
             }
         }
-        return soma;
+        return soma - start;
     }
 
 }
