@@ -317,8 +317,6 @@ class BinarySearchTree {
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
-    // public int countLeaves() {}
-    // se o nó atual é nulo retorna 0
     public int countLeaves(Node current) {
         if (current == null) {
             return 0;
