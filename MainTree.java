@@ -66,15 +66,19 @@ public class MainTree {
                     tree.clearTree();
                 }
                 case 9 -> {
-                    if (tree.minNode() == Integer.MIN_VALUE) System.out.println("Arvore vazia!");
-                    else System.out.println(tree.minNode());
+                    if (tree.minNode() == Integer.MIN_VALUE)
+                        System.out.println("Arvore vazia!");
+                    else
+                        System.out.println(tree.minNode());
                 }
                 case 10 -> {
-                    if (tree.maxNode() == Integer.MAX_VALUE) System.out.println("Arvore vazia!");
-                    else System.out.println(tree.maxNode());
+                    if (tree.maxNode() == Integer.MAX_VALUE)
+                        System.out.println("Arvore vazia!");
+                    else
+                        System.out.println(tree.maxNode());
                 }
                 case 11 -> {
-
+                    System.out.println("Número de folhas da árvore: " + tree.countLeaves(tree.getRoot()));
                 }
                 case 12 -> {
                     System.out.println("Informe o primeiro elemento do caminho: ");
@@ -82,7 +86,8 @@ public class MainTree {
                     System.out.println("Informe o ultimo elemento do caminho: ");
                     int end = scan.nextInt();
 
-                    if (tree.countBetween(start, end) == Integer.MIN_VALUE) System.out.println("Árvore vazia!");
+                    if (tree.countBetween(start, end) == Integer.MIN_VALUE)
+                        System.out.println("Árvore vazia!");
                     System.out.println(tree.countBetween(start, end));
                 }
             }
