@@ -323,14 +323,9 @@ class BinarySearchTree {
         if (current == null) {
             return 0;
         }
-
-        // se o nó é uma folha retorna 1
-
         if (current.left == null && current.right == null) {
             return 1;
         }
-
-        // recursivamente conta as folhas nas sub arvores esquerda e direita
         return countLeaves(current.left) + countLeaves(current.right);
     }
 
