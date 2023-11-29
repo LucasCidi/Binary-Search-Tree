@@ -1,7 +1,7 @@
 /**
  * CLASSE BinarySearchTree
  * Trabalhando com árvore binária de pesquisa
- * */
+ */
 
 class BinarySearchTree {
 
@@ -29,7 +29,7 @@ class BinarySearchTree {
         } else {
             current = root;
             // percorre a árvore
-            while(true) {
+            while (true) {
                 prev = current;
                 // ir para esquerda
                 if (v <= current.element) {
@@ -70,12 +70,11 @@ class BinarySearchTree {
             // encontrou uma folha -> sai
             if (current == null)
                 return null;
-        }   
+        }
 
         // terminou o laço while e chegou aqui é pq encontrou item
         return current;
     }
-
 
     public boolean remove(Integer v) {
         // se arvore vazia
@@ -87,7 +86,7 @@ class BinarySearchTree {
         boolean child_left = true;
 
         // buscando o valor
-        while(current.element != v) {
+        while (current.element != v) {
             // enquanto nao encontrou
             father = current;
             // caminha para esquerda
@@ -130,7 +129,8 @@ class BinarySearchTree {
             else
                 father.right = current.left;
         }
-        // Se é pai e nao possui um filho a esquerda, substitui pela subarvore a esquerda
+        // Se é pai e nao possui um filho a esquerda, substitui pela subarvore a
+        // esquerda
         else if (current.left == null) {
             // se raiz
             if (current == root)
@@ -138,14 +138,15 @@ class BinarySearchTree {
             // se for filho a esquerda do pai
             else if (child_left)
                 father.left = current.right;
-            // se for  filho a direita do pai
+            // se for filho a direita do pai
             else
                 father.right = current.right;
         }
         // Se possui mais de um filho, se for um avô ou outro grau maior de parentesco
         else {
             Node successor = node_successor(current);
-            // Usando sucessor que seria o Nó mais a esquerda da subarvore a direita do No que deseja-se remover
+            // Usando sucessor que seria o Nó mais a esquerda da subarvore a direita do No
+            // que deseja-se remover
             // se raiz
             if (current == root)
                 root = successor;
@@ -162,7 +163,8 @@ class BinarySearchTree {
         return true;
     }
 
-    // O sucessor é o nodo mais a esquerda da subarvore a direita do nodo que foi passado como parâmetro do método
+    // O sucessor é o nodo mais a esquerda da subarvore a direita do nodo que foi
+    // passado como parâmetro do método
     public Node node_successor(Node node) {
         Node father_successor = node;
         Node successor = node;
@@ -246,15 +248,15 @@ class BinarySearchTree {
     public void treeInfo() {
         System.out.println("Altura da arvore: " + height(root));
         System.out.println("Quantidade de Nós: " + countNodes(root));
-        //if (root != null) {
-            // System.out.println("Valor minimo: " + minNode());
-            // System.out.println("Valor maximo: " + maxNode());
+        // if (root != null) {
+        // System.out.println("Valor minimo: " + minNode());
+        // System.out.println("Valor maximo: " + maxNode());
         // }
         // System.out.println("Quantidade de folhas: " + leaveNodes(root));
     }
 
     public void printTree() {
-        if(root != null) {
+        if (root != null) {
             TreeFormatter formatter = new TreeFormatter();
             System.out.println(formatter.topDown(root));
         } else {
@@ -262,10 +264,10 @@ class BinarySearchTree {
         }
     }
 
-
     /**
      * Método minNode()
      * método que busca o menor valor existente na árvore
+     * 
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor do menor nodo da árvore
      */
@@ -276,16 +278,17 @@ class BinarySearchTree {
             return min;
         }
         while (current.element > min) {
-                current = current.left;
-                if (current.left == null) break;
+            current = current.left;
+            if (current.left == null)
+                break;
         }
         return current.element;
     }
 
-
     /**
      * Método maxNode()
      * método que busca o maior valor existente na árvore
+     * 
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor do maior nodo da árvore
      */
@@ -297,39 +300,55 @@ class BinarySearchTree {
         }
         while (current.element < max) {
             current = current.right;
-            if (current.right == null) break;
+            if (current.right == null)
+                break;
         }
         return current.element;
     }
 
-
-
     /**
      * Método countLeaves()
      * método que conta os nodos folha de uma árvore binária
+     * 
      * @param defina a necessidade de parâmetros de acordo com a sua implementação
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
-    //public int countLeaves() {}
+    // public int countLeaves() {}
+    public int countLeaves(Node current) {
+        if (current == null) {
+            return 0;
+        }
 
+        // se o nó é uma folha retorna 1
+
+        if (current.left == null && current.right == null) {
+            return 1;
+        }
+
+        // recursivamente conta as folhas nas sub arvores esquerda e direita
+        return countLeaves(current.left) + countLeaves(current.right);
+    }
 
     /**
      * Método sumBetween()
-     * método soma os valores de uma sequência de nodos (não incluindo os valores dos nodos de início e fim)
-     * @param start valor que corresponde ao nodo de início
-     * @param end valor que corresponde ao nodo de fim
+     * método soma os valores de uma sequência de nodos (não incluindo os valores
+     * dos nodos de início e fim)
+     * 
+     * @param start  valor que corresponde ao nodo de início
+     * @param end    valor que corresponde ao nodo de fim
      * @param defina outros caso haja necessidade na sua implementação
      * @return valor inteiro correspondente a quantidade de nodos folha
      */
     public int countBetween(int start, int end) {
         Node current = root;
-        int soma = 0, min = Integer.MIN_VALUE;;
-        if(root == null) {
+        int soma = 0, min = Integer.MIN_VALUE;
+        ;
+        if (root == null) {
             return min;
         }
 
-        while(current.element != start) {
-            if(start < current.element) {
+        while (current.element != start) {
+            if (start < current.element) {
                 current = current.left;
             } else {
                 current = current.right;
@@ -337,9 +356,9 @@ class BinarySearchTree {
         }
 
         soma += current.element;
-        
-        while(current.element != end) {
-            if(end < current.element) {
+
+        while (current.element != end) {
+            if (end < current.element) {
                 current = current.left;
                 soma += current.element;
             } else {
